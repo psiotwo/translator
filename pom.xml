@@ -1,0 +1,104 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>cz.sio2</groupId>
+    <artifactId>translator</artifactId>
+    <version>1.0</version>
+    <packaging>jar</packaging>
+
+    <name>Ontological and Property File Translator</name>
+    <description>This project serves for automated translating of Java property files as well as OWL ontologies by means
+        of :
+
+        1) linked data
+        2) Microsoft Translate API
+
+        Other engines can be pluged-in.
+    </description>
+    <url>http://maven.apache.org</url>
+    <developers>
+        <developer>
+            <name>Petr Kremen</name>
+            <email>petr.kremen@gmail.com</email>
+        </developer>
+    </developers>
+    <repositories>
+        <repository>
+            <url>http://download.java.net/maven/2</url>
+            <id>metro</id>
+            <layout>default</layout>
+            <name>Repository for library[metro]</name>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <name>java.net</name>
+            <id>java.net</id>
+            <url>http://download.java.net/maven/2/</url>
+        </pluginRepository>
+    </pluginRepositories>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.9</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.memetix</groupId>
+            <artifactId>microsoft-translator-java-api</artifactId>
+            <version>0.6.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.6.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>1.6.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.hp.hpl.jena</groupId>
+            <artifactId>jena</artifactId>
+            <version>2.6.4</version>
+        </dependency>
+        <dependency>
+            <groupId>com.hp.hpl.jena</groupId>
+            <artifactId>arq</artifactId>
+            <version>2.8.8</version>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jaxws-maven-plugin</artifactId>
+                <version>1.12</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>wsimport</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <sourceDestDir>src/main/java</sourceDestDir>
+                    <!--<destDir>src/main/java</destDir>-->
+                    <packageName>cz.sio2.translator.webservicex.generated</packageName>
+                    <wsdlUrls>
+                        <wsdlUrl>http://www.webservicex.net/TranslateService.asmx?WSDL</wsdlUrl>
+                    </wsdlUrls>
+                    <extension>true</extension>
+                    <sei/>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

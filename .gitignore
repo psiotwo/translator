@@ -1,0 +1,4 @@
+target
+.idea
+translator.iml
+src/main/resources/microsoft-translate-private.properties

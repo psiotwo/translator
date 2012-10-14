@@ -1,0 +1,5 @@
+Translator of RDF/OWL ontologies and Java property files.
+
+It uses Microsoft Translate or DBPedia inside. More details will follow. For Microsoft Translate Engine you have to obtain your clientId
+and clientSecret first and provide it by means of src/main/resources/microsoft-translate.properties.
+
